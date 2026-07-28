@@ -1,11 +1,9 @@
 import SubjectGridSkeleton from "@/components/explore/SubjectGridSkeleton";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+
 
 export default function Loading() {
   return (
     <>
-      <Navbar />
 
       <main className="bg-[#F8F4EC] pt-32 pb-20">
 
@@ -24,8 +22,6 @@ export default function Loading() {
         </div>
 
       </main>
-
-      <Footer />
     </>
   );
 }

@@ -1,12 +1,8 @@
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import SubjectGrid from "@/components/explore/SubjectGrid";
 
 export default function ExplorePage() {
   return (
     <>
-      <Navbar />
-
       <main className="bg-[#F8F4EC] pt-28 pb-20">
 
         <div className="mx-auto max-w-7xl px-6">
@@ -30,8 +26,6 @@ export default function ExplorePage() {
         </div>
 
       </main>
-
-      <Footer />
     </>
   );
 }
