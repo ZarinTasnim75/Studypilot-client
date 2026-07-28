@@ -74,16 +74,23 @@ export default function LoginPage() {
 
   // Google Social Sign-In via Better Auth
   const handleGoogleLogin = async (): Promise<void> => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/explore",
-    });
+    try {
+      const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
+
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: `${origin}/explore`,
+      });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to initiate Google sign-in";
+      setErrors({ general: errorMessage });
+    }
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#F8F4EC] px-4 py-28 text-[#2D2A26]">
       <div className="w-full max-w-md rounded-[28px] border border-[#EEE8DE] bg-white p-8 shadow-sm md:p-10">
-        
+
         {/* Header */}
         <div className="text-center">
           <h1 className="text-3xl font-extrabold text-[#2D2A26]">Welcome Back</h1>
@@ -114,7 +121,7 @@ export default function LoginPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-          
+
           {/* Email */}
           <div>
             <label className="block text-xs font-bold uppercase tracking-wider text-[#6F665B]">
@@ -127,11 +134,10 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
-                className={`w-full rounded-2xl border py-3.5 pl-11 pr-4 text-sm outline-none transition-all ${
-                  errors.email
+                className={`w-full rounded-2xl border py-3.5 pl-11 pr-4 text-sm outline-none transition-all ${errors.email
                     ? "border-red-400 bg-red-50/30"
                     : "border-[#EEE8DE] focus:border-[#1F4B43] focus:ring-2 focus:ring-[#1F4B43]/10"
-                }`}
+                  }`}
               />
             </div>
             {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
@@ -151,11 +157,10 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className={`w-full rounded-2xl border py-3.5 pl-11 pr-11 text-sm outline-none transition-all ${
-                  errors.password
+                className={`w-full rounded-2xl border py-3.5 pl-11 pr-11 text-sm outline-none transition-all ${errors.password
                     ? "border-red-400 bg-red-50/30"
                     : "border-[#EEE8DE] focus:border-[#1F4B43] focus:ring-2 focus:ring-[#1F4B43]/10"
-                }`}
+                  }`}
               />
               <button
                 type="button"

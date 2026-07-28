@@ -3,6 +3,7 @@ import "./globals.css";
 import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Providers from "./providers";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -28,12 +29,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jakarta.variable} ${cormorant.variable}`}>
-        <Navbar />
-  {children}
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
 
-  <Footer />
-  
-</body>
+      </body>
     </html>
   );
 }

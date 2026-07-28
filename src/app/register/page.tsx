@@ -1,4 +1,3 @@
-// app/register/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -71,7 +70,7 @@ export default function RegisterPage() {
           setIsLoading(true);
         },
         onSuccess: () => {
-          router.push("/explore");
+          router.push("/login");
           router.refresh();
         },
         onError: (ctx) => {
@@ -84,10 +83,18 @@ export default function RegisterPage() {
 
   // Google Registration via Better Auth
   const handleGoogleLogin = async (): Promise<void> => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/explore",
-    });
+    try {
+      // Use absolute origin to prevent backend 5000 redirect issues
+      const origin = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
+      
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: `${origin}/explore`,
+      });
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to initiate Google sign-in";
+      setErrors({ general: errorMessage });
+    }
   };
 
   return (
