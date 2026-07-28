@@ -5,16 +5,18 @@ import { motion } from "framer-motion";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
 import { ChevronDown } from "lucide-react";
+import { useUserSession } from "@/hooks/use-user-session";
 import Link from "next/link";
 
 export default function Hero() {
+    const { data: session, isLoading } = useUserSession();
     return (
         <section className="relative overflow-hidden bg-[#F8F4EC]">
             {/* Background Shapes */}
 
-            <div className="absolute left-[-180px] top-20 h-[500px] w-[500px] rounded-full bg-[#EFE3D0] opacity-20 blur-3xl" />
+            <div className="pointer-events-none absolute left-[-180px] top-20 -z-10 h-[500px] w-[500px] rounded-full bg-[#EFE3D0] opacity-20 blur-3xl" />
 
-            <div className="absolute right-[-200px] bottom-0 h-[550px] w-[550px] rounded-full bg-[#F5EBDD] opacity-20 blur-3xl" />
+            <div className="pointer-events-none absolute right-[-200px] bottom-0 -z-10 h-[550px] w-[550px] rounded-full bg-[#F5EBDD] opacity-20 blur-3xl" />
 
             <Container>
                 <div className="grid min-h-[62vh] lg:min-h-[65vh] grid-cols-1 items-center gap-8 py-10 lg:grid-cols-[1fr_1.1fr]">
@@ -24,7 +26,7 @@ export default function Hero() {
                         initial={{ opacity: 0, x: -40 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: .8 }}
-                        className="max-w-xl"
+                        className="relative z-10 max-w-xl"
                     >
                         <div className="inline-flex rounded-full bg-white px-5 py-2 shadow mt-10">
                             <span className="font-semibold text-[#D8A34D]">
@@ -44,35 +46,52 @@ export default function Hero() {
                             recommendations, and prepare for exams with confidence.
                         </p>
 
-                        {/* <div className="mt-8 flex flex-wrap gap-4">
-                            <Button className="hover:scale-105 transition duration-300">
-                                Start Learning
-                            </Button>
+                        <div className="mt-8 flex min-h-[48px] flex-wrap items-center gap-4">
+                            {isLoading ? (
+                                /* Loading Skeleton */
+                                <div className="flex gap-4">
+                                    <div className="h-12 w-36 animate-pulse rounded-full bg-[#EFE3D0]" />
+                                    <div className="h-12 w-32 animate-pulse rounded-full bg-[#EFE3D0]" />
+                                </div>
+                            ) : session?.user ? (
+                                /* LOGGED IN: Redirect to Explore or Dashboard */
+                                <>
+                                    <Link href="/explore">
+                                        <Button className="transition duration-300 hover:scale-105">
+                                            Explore Notes
+                                        </Button>
+                                    </Link>
 
-                            <Button
-                                variant="secondary"
-                                className="hover:scale-105 transition duration-300"
-                            >
-                                Explore Notes
-                            </Button>
-                        </div> */}
+                                    <Link href="/dashboard">
+                                        <Button
+                                            variant="secondary"
+                                            className="transition duration-300 hover:scale-105"
+                                        >
+                                            Dashboard
+                                        </Button>
+                                    </Link>
+                                </>
+                            ) : (
+                                /* LOGGED OUT: Redirect to Register / Login */
+                                <>
+                                    <Link href="/register">
+                                        <Button className="transition duration-300 hover:scale-105">
+                                            Start Learning
+                                        </Button>
+                                    </Link>
 
-                        <div className="mt-8 flex flex-wrap gap-4">
-                            <Link href="/register">
-                                <Button className="hover:scale-105 transition duration-300">
-                                    Start Learning
-                                </Button>
-                            </Link>
-
-                            <Link href="/explore">
-                                <Button
-                                    variant="secondary"
-                                    className="hover:scale-105 transition duration-300"
-                                >
-                                    Explore Notes
-                                </Button>
-                            </Link>
+                                    <Link href="/explore">
+                                        <Button
+                                            variant="secondary"
+                                            className="transition duration-300 hover:scale-105"
+                                        >
+                                            Explore Notes
+                                        </Button>
+                                    </Link>
+                                </>
+                            )}
                         </div>
+
 
                         <div className="mt-10 flex flex-wrap gap-12">
 
@@ -122,6 +141,7 @@ export default function Hero() {
 
                 </div>
             </Container>
+
             <motion.button
                 onClick={() =>
                     document.getElementById("features")?.scrollIntoView({

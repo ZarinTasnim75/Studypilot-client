@@ -21,7 +21,7 @@ export default function AboutPage() {
       <div className="absolute right-[-200px] top-[40%] h-[550px] w-[550px] rounded-full bg-[#F5EBDD] opacity-30 blur-3xl" />
 
       {/* 1. HERO SECTION */}
-      <section className="relative px-4 pt-16 pb-12 sm:px-6 lg:px-8">
+      <section className="relative px-4 pt-26 pb-12 sm:px-6 lg:px-8 ">
         <div className="mx-auto max-w-5xl text-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}

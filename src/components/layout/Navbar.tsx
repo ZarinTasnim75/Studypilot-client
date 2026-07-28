@@ -6,10 +6,19 @@ import { useEffect, useState } from "react";
 import { useUserSession } from "@/hooks/use-user-session";
 import { authClient } from "../../../lib/auth-client"; 
 
-const navItems = [
+const guestNavItems = [
   { name: "Home", href: "/" },
   { name: "Explore", href: "/explore" },
   { name: "AI Studio", href: "/ai" },
+  { name: "About", href: "/about" },
+];
+
+const userNavItems = [
+  { name: "Home", href: "/" },
+  { name: "Explore", href: "/explore" },
+  { name: "AI Studio", href: "/ai" },
+  { name: "Saved Notes", href: "/saved" },
+  { name: "Dashboard", href: "/dashboard" },
   { name: "About", href: "/about" },
 ];
 
@@ -18,6 +27,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const { data: session, isLoading } = useUserSession();
+  const currentNavItems = session?.user ? userNavItems : guestNavItems;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -59,7 +69,7 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-14">
-          {navItems.map((item) => (
+          {currentNavItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
@@ -128,7 +138,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="border-t border-[#E8E1D5] bg-[#FFFDF9] px-8 py-6 shadow-lg lg:hidden">
           <div className="flex flex-col gap-5">
-            {navItems.map((item) => (
+            {currentNavItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
