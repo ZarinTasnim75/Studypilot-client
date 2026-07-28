@@ -2,12 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { authClient } from "../../../lib/auth-client";
 import { Mail, Lock, Eye, EyeOff, AlertCircle, Sparkles, ArrowRight } from "lucide-react";
 
 export default function LoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -60,12 +58,9 @@ export default function LoginPage() {
         onRequest: () => {
           setIsLoading(true);
         },
-        onSuccess: async () => {
-          await authClient.getSession();
-
-          router.push("/explore");
-          router.refresh();
-        },
+        onSuccess: () => {
+        window.location.href = "/explore";
+      },
         onError: (ctx) => {
           setIsLoading(false);
           setErrors({ general: ctx.error.message || "Invalid credentials. Please try again." });
