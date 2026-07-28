@@ -41,9 +41,11 @@ export default function PopularSubjects() {
       <div className="max-w-7xl mx-auto px-5">
 
         <div className="text-center mb-16">
-          <span className="badge badge-warning badge-lg">
-            Popular Subjects
-          </span>
+          <div className="inline-flex items-center rounded-full border border-[#D8A34D]/30 bg-[#fad59a] px-5 py-2">
+            <span className="text-sm font-semibold tracking-wide text-[#624104] uppercase">
+              Popular Subjects
+            </span>
+          </div>
 
           <h2 className="text-5xl font-bold mt-5">
             Learn Any Subject with AI
