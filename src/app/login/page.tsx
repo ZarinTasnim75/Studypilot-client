@@ -60,7 +60,9 @@ export default function LoginPage() {
         onRequest: () => {
           setIsLoading(true);
         },
-        onSuccess: () => {
+        onSuccess: async () => {
+          await authClient.getSession();
+
           router.push("/explore");
           router.refresh();
         },
@@ -135,8 +137,8 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 className={`w-full rounded-2xl border py-3.5 pl-11 pr-4 text-sm outline-none transition-all ${errors.email
-                    ? "border-red-400 bg-red-50/30"
-                    : "border-[#EEE8DE] focus:border-[#1F4B43] focus:ring-2 focus:ring-[#1F4B43]/10"
+                  ? "border-red-400 bg-red-50/30"
+                  : "border-[#EEE8DE] focus:border-[#1F4B43] focus:ring-2 focus:ring-[#1F4B43]/10"
                   }`}
               />
             </div>
@@ -158,8 +160,8 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className={`w-full rounded-2xl border py-3.5 pl-11 pr-11 text-sm outline-none transition-all ${errors.password
-                    ? "border-red-400 bg-red-50/30"
-                    : "border-[#EEE8DE] focus:border-[#1F4B43] focus:ring-2 focus:ring-[#1F4B43]/10"
+                  ? "border-red-400 bg-red-50/30"
+                  : "border-[#EEE8DE] focus:border-[#1F4B43] focus:ring-2 focus:ring-[#1F4B43]/10"
                   }`}
               />
               <button

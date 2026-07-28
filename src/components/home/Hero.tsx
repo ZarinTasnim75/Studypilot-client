@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Container from "../ui/Container";
 import Button from "../ui/Button";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
     return (
@@ -16,7 +17,7 @@ export default function Hero() {
             <div className="absolute right-[-200px] bottom-0 h-[550px] w-[550px] rounded-full bg-[#F5EBDD] opacity-20 blur-3xl" />
 
             <Container>
-               <div className="grid min-h-[62vh] lg:min-h-[65vh] grid-cols-1 items-center gap-8 py-10 lg:grid-cols-[1fr_1.1fr]">
+                <div className="grid min-h-[62vh] lg:min-h-[65vh] grid-cols-1 items-center gap-8 py-10 lg:grid-cols-[1fr_1.1fr]">
                     {/* LEFT */}
 
                     <motion.div
@@ -43,7 +44,7 @@ export default function Hero() {
                             recommendations, and prepare for exams with confidence.
                         </p>
 
-                        <div className="mt-8 flex flex-wrap gap-4">
+                        {/* <div className="mt-8 flex flex-wrap gap-4">
                             <Button className="hover:scale-105 transition duration-300">
                                 Start Learning
                             </Button>
@@ -54,6 +55,23 @@ export default function Hero() {
                             >
                                 Explore Notes
                             </Button>
+                        </div> */}
+
+                        <div className="mt-8 flex flex-wrap gap-4">
+                            <Link href="/register">
+                                <Button className="hover:scale-105 transition duration-300">
+                                    Start Learning
+                                </Button>
+                            </Link>
+
+                            <Link href="/explore">
+                                <Button
+                                    variant="secondary"
+                                    className="hover:scale-105 transition duration-300"
+                                >
+                                    Explore Notes
+                                </Button>
+                            </Link>
                         </div>
 
                         <div className="mt-10 flex flex-wrap gap-12">
@@ -81,7 +99,7 @@ export default function Hero() {
                             width={650}
                             height={650}
                             priority
-                           className="relative mx-auto w-full max-w-[460px] lg:max-w-[520px] xl:max-w-[560px]"
+                            className="relative mx-auto w-full max-w-[460px] lg:max-w-[520px] xl:max-w-[560px]"
                         />
 
                         {/* Card 1 */}

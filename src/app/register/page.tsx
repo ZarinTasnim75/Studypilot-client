@@ -63,7 +63,7 @@ export default function RegisterPage() {
         email,
         password,
         name,
-        callbackURL: "/explore",
+        callbackURL: "/login",
       },
       {
         onRequest: () => {
