@@ -22,7 +22,7 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Nusrat Jahan",
+    name: "Zariful Islam",
     university: "Engineering Student",
     image: "/users/user3.jpg",
     review:
