@@ -4,6 +4,7 @@ import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Providers from "./providers";
+import { Toaster } from "react-hot-toast";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -30,11 +31,22 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jakarta.variable} ${cormorant.variable}`}>
         <Providers>
+          <Toaster 
+            position="top-center" 
+            toastOptions={{
+              duration: 3000,
+              style: {
+                background: '#2D2A26',
+                color: '#FFFDF9',
+                fontSize: '13px',
+                borderRadius: '12px',
+              },
+            }} 
+          />
           <Navbar />
           {children}
           <Footer />
         </Providers>
-
       </body>
     </html>
   );

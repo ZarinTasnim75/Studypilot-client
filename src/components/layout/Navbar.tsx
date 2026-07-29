@@ -9,14 +9,14 @@ import { authClient } from "../../../lib/auth-client";
 const guestNavItems = [
   { name: "Home", href: "/" },
   { name: "Explore", href: "/explore" },
-  { name: "AI Studio", href: "/ai" },
+  { name: "AI Studio", href: "/ai-studio" },
   { name: "About", href: "/about" },
 ];
 
 const userNavItems = [
   { name: "Home", href: "/" },
   { name: "Explore", href: "/explore" },
-  { name: "AI Studio", href: "/ai" },
+  { name: "AI Studio", href: "/ai-studio" },
   { name: "Saved Enrollments", href: "/saved" },
   { name: "Dashboard", href: "/dashboard" },
   { name: "About", href: "/about" },

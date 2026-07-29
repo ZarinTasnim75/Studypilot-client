@@ -84,11 +84,10 @@ export default function AIStudyStudio() {
                             </p>
 
                             <Link
-                                href="/login"
+                                href="/ai-studio"
                                 className="mt-8 inline-flex items-center gap-2 font-semibold text-[#1F4B43] transition hover:gap-3"
                             >
                                 Try Demo
-
                                 <ArrowRight size={18} />
                             </Link>
 
@@ -102,10 +101,13 @@ export default function AIStudyStudio() {
 
                         <div>
 
-                            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 text-white">
+                            <Link
+                                href="/ai-studio"
+                                className="btn mt-8 inline-flex items-center justify-center rounded-full border-none bg-[#D8A34D] px-6 py-3 font-bold text-black hover:bg-[#c9963f]"
+                            >
                                 <Sparkles size={18} />
                                 Live AI Preview
-                            </div>
+                            </Link>
 
                             <h3 className="mt-6 text-4xl font-bold text-white">
                                 Ask Your AI Study Assistant

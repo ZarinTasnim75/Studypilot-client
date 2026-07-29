@@ -15,6 +15,7 @@
     "better-auth": "^1.6.25",
     "chart.js": "^4.5.1",
     "framer-motion": "^12.42.2",
+    "katex": "^0.18.1",
     "lucide-react": "^1.27.0",
     "next": "16.2.12",
     "react": "19.2.4",
@@ -23,7 +24,11 @@
     "react-hook-form": "^7.83.0",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.7.0",
+    "react-markdown": "^10.1.0",
     "recharts": "^3.10.1",
+    "rehype-katex": "^7.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {

@@ -33,7 +33,7 @@ export default function ProfileDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFFDF9] px-4 py-10 sm:px-8">
+    <div className="min-h-screen bg-[#FFFDF9] px-4 py-10 sm:px-8 mt-6">
       <div className="mx-auto max-w-3xl">
         <div className="mb-8">
           <span className="text-xs font-bold uppercase tracking-widest text-[#D8A34D]">
@@ -71,6 +71,8 @@ function ProfileForm({ user }: { user: UserData }) {
 
     try {
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+      // 1. Update institute and profile details in MongoDB via Express
       const res = await fetch(`${API_URL}/api/users/profile`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -81,13 +83,19 @@ function ProfileForm({ user }: { user: UserData }) {
         }),
       });
 
-      if (res.ok) {
-        toast.success('Profile updated successfully!');
-        setIsEditing(false);
-      } else {
+      if (!res.ok) {
         const err = await res.json().catch(() => ({}));
         toast.error(err.error || 'Failed to update profile.');
+        return;
       }
+
+      // 2. Refresh Better Auth session token on client so reloads keep the new name
+      await authClient.updateUser({
+        name: formData.name,
+      });
+
+      toast.success('Profile updated successfully!');
+      setIsEditing(false);
     } catch (error) {
       console.error('Profile update error:', error);
       toast.error('Could not connect to server.');
