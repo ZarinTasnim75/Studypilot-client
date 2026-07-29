@@ -17,7 +17,7 @@ const userNavItems = [
   { name: "Home", href: "/" },
   { name: "Explore", href: "/explore" },
   { name: "AI Studio", href: "/ai" },
-  { name: "Saved Notes", href: "/saved" },
+  { name: "Saved Enrollments", href: "/saved" },
   { name: "Dashboard", href: "/dashboard" },
   { name: "About", href: "/about" },
 ];
