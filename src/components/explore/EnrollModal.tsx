@@ -54,7 +54,6 @@ export default function EnrollModal({ resource }: EnrollModalProps) {
 
         setIsSubmitting(true);
 
-        // Payload sent to your backend API route
         const payload = {
             userId: user.id,
             userName: user.name,
@@ -66,9 +65,16 @@ export default function EnrollModal({ resource }: EnrollModalProps) {
         };
 
         try {
-            const res = await fetch('/api/enrollments', {
+            // Replace with your Express server URL or process.env.NEXT_PUBLIC_API_URL
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+
+            const res = await fetch(`${API_URL}/api/enrollments`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                // Ensures Better Auth session cookies are sent with the cross-origin request
+                credentials: 'include',
                 body: JSON.stringify(payload),
             });
 
