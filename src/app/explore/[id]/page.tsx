@@ -2,6 +2,7 @@
 import { resources } from "@/data/resources";
 import SubjectCard from "@/components/explore/SubjectCard";
 import ImageGallery from "@/components/explore/ImageGallery";
+import EnrollModal from "@/components/explore/EnrollModal";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -58,10 +59,10 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
 
         {/* Main Grid: Media & Specs */}
         <div className="grid gap-10 lg:grid-cols-12">
-          
+
           {/* Left Column: Gallery & Core Details */}
           <div className="lg:col-span-8 space-y-10">
-            
+
             {/* 1. Multiple Images / Media Component */}
             <ImageGallery mainImage={resource.image} title={resource.title} />
 
@@ -132,7 +133,7 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
             {/* 3. Key Information / Specifications Section */}
             <section className="rounded-[28px] bg-white p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-[#2D2A26]">Specifications & Key Details</h2>
-              
+
               <div className="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-4">
                 <div className="rounded-2xl bg-[#F8F4EC] p-4 text-center">
                   <Clock3 size={24} className="mx-auto text-[#1F4B43]" />
@@ -221,9 +222,10 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
               </div>
 
               <div className="mt-6 space-y-3">
-                <button className="w-full rounded-full bg-[#1F4B43] py-4 font-bold text-white transition-colors hover:bg-[#173B35]">
-                  Enroll Now
-                </button>
+                {/* REPLACE THE HARCODED BUTTON WITH ENROLL MODAL */}
+                {/* <EnrollModal resource={resource} /> */}
+                <EnrollModal resource={{ id: resource.id, title: resource.title, price: resource.price }} />
+
                 <button className="w-full rounded-full border border-[#EEE8DE] py-3.5 font-semibold text-[#2D2A26] transition-colors hover:bg-[#F8F4EC]">
                   Add to Wishlist
                 </button>
