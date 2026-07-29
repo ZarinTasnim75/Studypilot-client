@@ -76,7 +76,7 @@ export default function LoginPage() {
 
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: `${origin}/explore`,
+        callbackURL: "https://studypilot-client-orpin.vercel.app/explore",
       });
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Failed to initiate Google sign-in";

@@ -63,7 +63,7 @@ export default function RegisterPage() {
         email,
         password,
         name,
-        callbackURL: "/login",
+        callbackURL: "https://studypilot-client-orpin.vercel.app/login",
       },
       {
         onRequest: () => {
@@ -89,7 +89,7 @@ export default function RegisterPage() {
       
       await authClient.signIn.social({
         provider: "google",
-        callbackURL: `${origin}/explore`,
+        callbackURL: "https://studypilot-client-orpin.vercel.app/explore",
       });
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Failed to initiate Google sign-in";
